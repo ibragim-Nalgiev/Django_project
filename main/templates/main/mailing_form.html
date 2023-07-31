@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="col-md-6 m-md-4">
+<form method="post" enctype="multipart/form-data">
+
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">
+                    Добавление рассылки
+                </h4>
+            </div>
+             <div class="card-body">
+
+                 {% csrf_token %}
+                 {{ form.as_p }}
+                 <input type="submit" class="btn btn-success" value="{% if object %}Сохранить{% else %}Создать{% endif %}">
+
+             </div>
+        </div>
+            <div class="card-footer">
+                <a href="{% url 'main:mailing_list' %}" class="btn btn-sm btn-outline-secondary"> Назад </a>
+            </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">
+                    Сообщение
+                </h4>
+            </div>
+             <div class="card-body">
+                 {{ formset.management_form }}
+                 {% for form in formset.forms %}
+                     {{form.as_p}}
+                 {% endfor %}
+             </div>
+        </div>
+</form>
+</div>
+
+{% endblock %}

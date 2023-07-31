@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row mb-2">
+    <div class="col-md-11 m-3">
+      <a href="{% url 'main:blog_create' %}" class="btn btn-sm btn-outline-secondary">Создать статью</a>
+      {% for object in blog_list %}
+        {% if object.is_public %}
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">Blog</strong>
+          <h3 class="mb-0">{{ object.title }}</h3>
+          <div class="mb-1 text-body-secondary">{{ object.date_create }}</div>
+          <p class="card-text mb-4">{{object.content|linebreaks|truncatewords:20}}</p>
+          <div class="btn-group">
+              <a href="{% url 'main:blog_item' object.pk %}" class="btn btn-sm btn-outline-secondary">Просмотр</a>
+              <a href="{% url 'main:blog_update' object.pk %}" class="btn btn-sm btn-outline-secondary">Изменить</a>
+              <a href="{% url 'main:blog_delete' object.pk %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
+          </div>
+      </div>
+      <hr>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <article class="blog-post">
+        <form method="post">
+          {% csrf_token %}
+          Уверены, что хотите удалить " {{object.email}} "?<br>
+
+          <input type="submit" class="btn btn-sm btn-outline-danger" value="Уверен">
+        </form>
+
+      <div class="card-footer">
+        <a href="{% url 'main:client_list' %}" class="btn btn-sm btn-outline-secondary"> Назад </a>
+      </div>
+
+    </article>
+
+{% endblock %}

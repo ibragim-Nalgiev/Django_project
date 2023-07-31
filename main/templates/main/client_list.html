@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <hr class="featurette-divider">
+    <a href="{% url 'main:client_create' %}" class="btn btn-sm btn-outline-secondary m-md-4">Создать клиента</a>
+{% for object in client_list %}
+
+    <div class="row featurette">
+      <div class="col-md-12 m-md-4">
+        <h2 class="featurette-heading fw-normal lh-1">{{object.email}} </h2>
+        <p class="lead">{{object.first_name}} {{object.last_name}}</p>
+      </div>
+    </div>
+
+    <div class="btn-group m-md-4">
+            <a href="{% url 'main:client_item' object.pk %}" class="btn btn-sm btn-outline-secondary">Просмотр</a>
+            <a href="{% url 'main:client_update' object.pk %}" class="btn btn-sm btn-outline-secondary">Изменить</a>
+            <a href="{% url 'main:client_delete' object.pk %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
+    </div>
+
+    <hr class="featurette-divider">
+
+{% endfor %}
+{% endblock %}

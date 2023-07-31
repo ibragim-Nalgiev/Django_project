@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <hr class="featurette-divider">
+    <div class="col-md-11 m-2">
+      <a href="{% url 'main:message_create' %}" class="btn btn-sm btn-outline-secondary">Создать сообщение</a>
+    </div>
+{% for object in message_list %}
+
+    <div class="row featurette">
+      <div class="col-md-12 m-md-4">
+        <h2 class="featurette-heading fw-normal lh-1">{{object.title}} </h2>
+        <p class="lead">{{object.context|linebreaks|truncatewords:10}}</p>
+          <span class="text-muted">Создал: {{object.creator.email}}</span>
+      </div>
+    </div>
+
+    <div class="btn-group m-md-4">
+            <a href="{% url 'main:message_item' object.pk %}" class="btn btn-sm btn-outline-secondary">Просмотр</a>
+            <a href="{% url 'main:message_update' object.pk %}" class="btn btn-sm btn-outline-secondary">Изменить</a>
+            <a href="{% url 'main:message_delete' object.pk %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
+    </div>
+
+    <hr class="featurette-divider">
+
+{% endfor %}
+{% endblock %}

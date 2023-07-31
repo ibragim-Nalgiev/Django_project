@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <article class="blog-post m-md-4">
+        <h2 class="display-5 link-body-emphasis mb-1">{{ message.title }}</h2>
+
+        <p>{{ message.context|linebreaks }}</p>
+        <hr>
+
+        <div class="m-md-2">
+            <span class="text-muted">Время рассылки: {{object.mailing.mailing_time}}</span></br>
+            <span class="text-muted">Периодичность рассылки: {{object.periodicity}}</span></br>
+            <span class="text-muted">Статус: {{object.mailing_status}}</span></br>
+            <span class="text-muted">Активна: {{object.is_active}}</span></br>
+            <span class="text-muted">Создал: {{object.creator.email}}</span></br>
+        </div>
+
+    </article>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <article class="blog-post m-md-4">
+        <h2 class="display-5 link-body-emphasis mb-1">{{ client.email }}</h2>
+
+        <hr>
+
+        <div class="m-md-5">
+            <span class="text-muted">{{client.first_name}}</span>
+            <span class="text-muted">{{client.last_name}}</span>
+            <span class="text-muted">{{client.comment}}</span>
+        </div>
+
+    </article>
+{% endblock %}

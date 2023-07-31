@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'includes/styles.html' %}
+<hr class="featurette-divider">
+
+<div class="row featurette">
+    <div class="col-md-11 m-3">
+        <h1 class="featurette-heading fw-normal lh-1">Количество рассылок: {{count_mailing}} шт. </h1>
+        <h1 class="featurette-heading fw-normal lh-1">Активные рассылки: {{count_mailing_active}} шт. </h1>
+        <h1 class="featurette-heading fw-normal lh-1">Уникальные клиенты: {{count_unique_client}} чел. </h1>
+    </div>
+
+
+    <h2 class="featurette-heading fw-normal lh-1 col-md-11 m-3"> Статьи: </h2>
+    {% for object in blog_random %}
+    <div class="col-md-12 m-md-4">
+        <p class="featurette-heading fw-normal lh-1">{{object.title}} </p>
+        <p class="lead">{{object.context|linebreaks|truncatewords:10}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<hr class="featurette-divider">
+
+{% endblock %}
+

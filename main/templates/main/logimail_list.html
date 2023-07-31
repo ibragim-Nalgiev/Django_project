@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <hr class="featurette-divider">
+
+{% for object in logi_list %}
+
+    <div class="row featurette">
+      <div class="col-md-12 m-md-4">
+        <h2 class="featurette-heading fw-normal lh-1">{{object.mailing}} </h2>
+        <p class="lead">{{object.server_answer|linebreaks|truncatewords:10}}</p>
+        <p class="lead">{{object.date_last}} / {{object.status}} / {{object.periodicity}}</p>
+      </div>
+    </div>
+
+    <div class="btn-group m-md-4">
+        <a href="#" class="btn btn-sm btn-outline-secondary">Просмотр</a>
+    </div>
+
+    <hr class="featurette-divider">
+
+{% endfor %}
+{% endblock %}
