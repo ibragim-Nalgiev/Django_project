@@ -145,7 +145,8 @@ LOGIN_URL = '/users/'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
 
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
@@ -160,3 +161,7 @@ CACHES = {
         "LOCATION": os.getenv('CACHE_LOCATION'),
     }
 }
+
+CRONJOBS = [
+    ('*/5 * * * *', 'main.crontab.daily_send', '>>/tmp/scheduled_job.log'),
+]
