@@ -2,27 +2,23 @@
 {% load static %}
 
 {% block content %}
+<div class="container mt-4">
 
-    <div class="col-6 m-md-5">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">
-                    Регистрация
-                </h4>
-            </div>
-             <div class="card-body">
+    <div class="col-md-6 offset-md-3">
 
-                 <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <h2 class="card-title">Управление рассылками</h2>
 
-                 {% csrf_token %}
-                     {{ form.as_p }}
-                 <input type="submit" class="btn btn-success" value="Зарегистрироваться">
-                 </form>
-             </div>
+            <form method="post">
+                <p class="card-text">
+                    Чтобы зарегистрировать новый аккаунт, пожалуйста, заполните форму:</p>
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success btn-sm">Зарегистрироваться</button>
+                <a href="{% url 'main:home' %}" class="btn btn-primary btn-sm">Отмена</a>
+
+            </form>
         </div>
-        <div class="card-footer">
-
-      </div>
     </div>
-
+</div>
 {% endblock %}

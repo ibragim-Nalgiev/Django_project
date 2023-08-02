@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Вы вышли из аккаунта</h2>
+
+                    <p class="card-text">Хотите авторизоваться повторно или создать новый аккаунт?</p>
+                </div>
+
+                <div class="card-body">
+                    <a href="{% url 'users:login' %}" class="btn btn-primary btn-sm">Войти</a>
+                    <a href="{% url 'users:register' %}"
+                       class="btn btn-primary btn-sm">Зарегистрироваться</a>
+                    <a href="{% url 'main:home' %}" class="btn btn-primary btn-sm">На главную</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -9,7 +9,7 @@
 
     <div class="row featurette">
       <div class="col-md-12 m-md-4">
-        <h2 class="featurette-heading fw-normal lh-1">{{object.title}} </h2>
+        <h2 class="featurette-heading fw-normal lh-1">{{object.title}}</h2>
         <p class="lead">{{object.context|linebreaks|truncatewords:10}}</p>
         <p class="lead">{{object.is_active}} / {{object.mailing_status}} / {{object.periodicity}} / {{object.mailing_time}}</p>
       </div>
@@ -25,6 +25,4 @@
     <hr class="featurette-divider">
 
 {% endfor %}
-
-
 {% endblock %}
