@@ -4,7 +4,15 @@ from django.urls import path
 from django.views.decorators.cache import cache_page
 
 from main.apps import MainConfig
-from main.views import *
+
+from main.views.message_views import *
+
+from main.views.mailing_views import *
+
+from main.views.client_views import *
+
+from main.views.blog_views import *
+
 
 app_name = MainConfig.name
 
