@@ -45,7 +45,7 @@ class ConfirmView(generic.TemplateView):
             user.verification_key = key
             user.save()
             login(self.request, user)
-        return redirect('valid_verify')
+        return redirect('users:valid_verify')
 
 
 
