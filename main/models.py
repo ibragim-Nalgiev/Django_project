@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from config import settings
 
@@ -21,10 +22,19 @@ class Blog(models.Model):
 
 
 class Client(models.Model):
+
+    CLIENT_STATUS = [
+        (True, 'Активен'),
+        (False, 'Заблокирован')
+    ]
+
     email = models.EmailField(unique=True, verbose_name='почта')
     first_name = models.CharField(max_length=150, verbose_name='имя', **NULLABLE)
     last_name = models.CharField(max_length=150, verbose_name='фамилия', **NULLABLE)
     comment = models.TextField(max_length=255, verbose_name='комментарий', **NULLABLE)
+
+    is_active = models.BooleanField(default=True, choices=CLIENT_STATUS, verbose_name='Статус пользователя')
+    client_owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None, verbose_name='Создатель клиента')
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}: {self.email}'
