@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+
 from django.db import models
 from config import settings
 
@@ -43,6 +44,12 @@ class Client(models.Model):
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
 
+        permissions = [
+            (
+                'block_user', 'Block or unblock client'
+            )
+        ]
+
 
 class Message(models.Model):
     title = models.CharField(max_length=60, verbose_name='тема письма')
@@ -83,8 +90,8 @@ class Mailing(models.Model):
     )
     is_active = models.BooleanField(default=False, verbose_name='рассылка активна')
     message = models.ForeignKey('Message', on_delete=models.CASCADE, **NULLABLE)
-    client = models.ManyToManyField('Client',
-                                    verbose_name='клиент')
+    client = models.ManyToManyField('Client', verbose_name='клиент')
+    mailing_owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None, verbose_name='Создатель рассылки')
 
     def __str__(self):
         return f'{self.periodicity}, {self.mailing_status}: {self.is_active}'
@@ -92,6 +99,12 @@ class Mailing(models.Model):
     class Meta:
         verbose_name = 'рассылка'
         verbose_name_plural = 'рассылки'
+
+        permissions = [
+            (
+                'stop_mailing', 'Stop or run mailing'
+            )
+        ]
 
 
 class LogiMail(models.Model):
