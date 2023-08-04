@@ -20,6 +20,7 @@ class ClientDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class ClientCreateView(LoginRequiredMixin, generic.CreateView):
+    permission_required = 'main.block_user'
     form_class = ClientForm
     success_url = reverse_lazy('main:client_list')
     template_name = 'main/client_create.html'
@@ -43,7 +44,6 @@ class ClientUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = 'main/client_create.html'
 
     def get_object(self, queryset=None):
-
         self.object = super().get_object(queryset)
         if self.object.client_owner != self.request.user and not self.request.user.is_superuser:
             raise Http404

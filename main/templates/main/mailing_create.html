@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% include 'includes/styles.html' %}
+{% block title %}
+Создать рассылку
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="col-md-6 offset-md-3">
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-success">Создать рассылку</button>
+            <a href="{% url 'main:mailing_list %}" class="btn btn-outline-warning">Отмена</a>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

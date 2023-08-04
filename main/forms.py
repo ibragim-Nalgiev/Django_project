@@ -19,7 +19,7 @@ class MessageForm(StyleForMixin, forms.ModelForm):
 class MailingForm(StyleForMixin, forms.ModelForm):
     class Meta:
         model = Mailing
-        fields = ('mailing_time', 'periodicity', 'mailing_status', 'is_active', 'client')
+        fields = ('mailing_time', 'periodicity', 'mailing_status', 'is_active', 'client', 'mailing_owner')
 
 
 class ClientForm(StyleForMixin, forms.ModelForm):
