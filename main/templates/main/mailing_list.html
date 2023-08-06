@@ -1,9 +1,29 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% include 'includes/styles.html' %}
+{% block title %}
+Рассылка
+{% endblock %}
 {% block content %}
-
-    <hr class="featurette-divider">
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Пользователи</h2>
+                    <p class="card-text">
+                        Управление пользователями.</p>
+                    <a href="{% url 'main:client_list' %}" class="btn btn-primary btn">Показать всех</a>
+                    <a href="{% url 'main:client_create' %}" class="btn btn-primary btn">Добавить пользователя</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="featurette-divider">
+    <div class="col-md-11 m-2">
+      <a href="{% url 'main:mailing_create' %}" class="btn btn-sm btn-outline-secondary">Создать рассылку</a>
+    </div>
 
 {% for object in mailing_list %}
 
@@ -26,3 +46,5 @@
 
 {% endfor %}
 {% endblock %}
+
+

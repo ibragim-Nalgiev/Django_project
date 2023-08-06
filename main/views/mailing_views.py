@@ -10,6 +10,8 @@ from django.http import Http404
 class MailingListView(LoginRequiredMixin, generic.ListView):
     model = Mailing
     template_name = 'main/mailing_list.html'
+    login_url = 'users:login'
+    redirect_field_name = 'next'
 
     def get_queryset(self):
         if self.request.user.is_superuser or self.request.user.groups.filter(name='Менеджеры').exists():
@@ -43,7 +45,7 @@ class MailingCreateView(LoginRequiredMixin, generic.CreateView):
             form.fields['client'].queryset = Client.objects.all()
             return form
         else:
-            form.fields['client'].queryset = Client.objects.filter(mailing_owner=self.request.user)
+            form.fields['client'].queryset = Client.objects.filter(client_owner=self.request.user)
             return form
 
     def form_valid(self, form):

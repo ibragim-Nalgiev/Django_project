@@ -1,6 +1,4 @@
 {% extends 'main/base.html' %}
-{% load static %}
-{% include 'includes/styles.html' %}
 {% block title %}
 Создать рассылку
 {% endblock %}
@@ -12,7 +10,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-outline-success">Создать рассылку</button>
-            <a href="{% url 'main:mailing_list %}" class="btn btn-outline-warning">Отмена</a>
+            <a href="{% url 'main:mailing_list' %}" class="btn btn-outline-warning">Отмена</a>
         </form>
 
     </div>
